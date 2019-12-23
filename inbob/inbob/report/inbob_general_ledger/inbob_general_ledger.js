@@ -39,25 +39,8 @@ frappe.query_reports["Inbob General Ledger"] = {
 		{
 			"fieldname":"account",
 			"label": __("Account"),
-			"fieldtype": "MultiSelect",
-			"reqd": 1,
-			 get_data: function() {
-				const user = frappe.session.user
-				let data = [];
-				frappe.call({
-					method:'inbob.inbob.report.inbob_general_ledger.inbob_general_ledger.get_allowed_amount',
-					async: false,
-					args: {
-						user: user
-					},
-					callback: function(r) {
-						r.message.map(d => {
-							data.push(d.account);
-						});
-					}
-				});
-				return data;
-			}			
+			"fieldtype": "Select",
+			"reqd": 1	
 		},
 		{
 			"fieldname":"voucher_no",
@@ -242,5 +225,24 @@ frappe.query_reports["Inbob General Ledger"] = {
 			"fieldtype": "Check",
 			"hidden":1
 		}
-	]
+	],
+	onload: function(report) {
+		const user = frappe.session.user
+		let data = [];
+		frappe.call({
+			method:'inbob.inbob.report.inbob_general_ledger.inbob_general_ledger.get_allowed_amount',
+			async: false,
+			args: {
+				user: user
+			},
+			callback: function(r) {
+				r.message.map(d => {
+					data.push(d.account);
+				});
+				let filter = report.get_filter("account");
+				filter.df.options = data;
+				filter.refresh();				
+			}
+		});
+	}	
 }
