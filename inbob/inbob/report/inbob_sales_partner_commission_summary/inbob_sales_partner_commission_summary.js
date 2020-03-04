@@ -1,18 +1,17 @@
-// Copyright (c) 2016, Frappe Technologies Pvt. Ltd. and contributors
+// Copyright (c) 2016, GreyCube Technologies and contributors
 // For license information, please see license.txt
 /* eslint-disable */
-
-frappe.query_reports["Inbob Sales Person Commission Summary"] = {
+frappe.query_reports["Inbob Sales Partner Commission Summary"] = {
 	"filters": [
 
 		{
-			fieldname: "sales_person",
-			label: __("Sales Person"),
+			fieldname: "sales_partner",
+			label: __("Sales Partner"),
 			fieldtype: "Link",
-			options: "Sales Person"
+			options: "Sales Partner"
 		},
 		{
-			fieldname: "doc_type",
+			fieldname: "doctype",
 			label: __("Document Type"),
 			fieldtype: "Select",
 			options: "Sales Order\nDelivery Note\nSales Invoice",
@@ -22,7 +21,7 @@ frappe.query_reports["Inbob Sales Person Commission Summary"] = {
 			fieldname: "from_date",
 			label: __("From Date"),
 			fieldtype: "Date",
-			default: frappe.defaults.get_user_default("year_start_date"),
+			default: frappe.datetime.add_months(frappe.datetime.get_today(), -1),
 		},
 		{
 			fieldname:"to_date",

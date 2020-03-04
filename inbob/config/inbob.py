@@ -16,7 +16,7 @@ def get_data():
 								{
 					"type": "report",
 					"is_query_report": True,
-					"name": "Inbob Sales Person Commission Summary",
+					"name": "Inbob Sales Partner Commission Summary",
 					"doctype": "Sales Order"
 				}
 			]
