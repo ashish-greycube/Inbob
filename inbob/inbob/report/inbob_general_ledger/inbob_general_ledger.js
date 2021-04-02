@@ -174,7 +174,7 @@ frappe.query_reports["Inbob General Ledger"] = {
 		const user = frappe.session.user
 		let data = [];
 		frappe.call({
-			method:'inbob.inbob.report.general_ledger_inbob.general_ledger_inbob.get_allowed_account',
+			method:'inbob.inbob.report.inbob_general_ledger.inbob_general_ledger.get_allowed_account',
 			async: false,
 			args: {
 				user: user
